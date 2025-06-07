@@ -1,0 +1,54 @@
+# .cursorrules for NestJS + Prisma project
+
+# [폴더 구조 및 설명]
+# src/                : 애플리케이션 소스 코드 루트
+# ├── app.module.ts    : 루트 모듈
+# ├── main.ts          : 애플리케이션 엔트리포인트
+# ├── config/          : 환경설정 및 환경변수 관련 코드
+# ├── prisma/          : Prisma 서비스, 모듈, 마이그레이션 관련 코드
+# ├── modules/         : 도메인별 비즈니스 로직(예: user, auth 등)
+# │   └── user/        : 유저 도메인(컨트롤러, 서비스, DTO 등)
+# ├── common/          : 공통 유틸리티(필터, 가드, 인터셉터, 데코레이터 등)
+# │   ├── filters/     : 예외 필터
+# │   ├── guards/      : 인증/인가 가드
+# │   ├── interceptors/: 인터셉터
+# │   └── decorators/  : 커스텀 데코레이터
+# prisma/              : Prisma 스키마 및 마이그레이션 파일
+# ├── schema.prisma    : Prisma 데이터 모델 정의
+# └── migrations/      : DB 마이그레이션 파일
+# .env                 : 환경변수 파일
+#
+# [폴더별 정의]
+# - src/config/        : 환경설정, ConfigModule, 환경변수 스키마 등
+# - src/prisma/        : PrismaService, PrismaModule 등 Prisma 관련 NestJS 코드
+# - src/modules/       : 각 도메인(비즈니스 로직)별 모듈, 서비스, 컨트롤러, DTO 등
+# - src/common/        : 여러 모듈에서 재사용되는 공통 코드(유틸, 필터, 가드 등)
+# - prisma/            : Prisma 스키마, 마이그레이션, seed 스크립트 등
+# - .env               : 데이터베이스 등 환경변수 관리
+
+[ignore]
+# 빌드 산출물 및 의존성 폴더 무시
+dist/
+node_modules/
+.env
+prisma/.env
+
+[format]
+# 코드 포맷팅 규칙
+*.ts: prettier --write
+*.js: prettier --write
+*.prisma: prettier --write
+
+[lint]
+# 린트 규칙
+*.ts: eslint --fix
+
+[test]
+# 테스트 실행 규칙
+*.spec.ts: npm run test
+
+[generate]
+# NestJS CLI 코드 생성 규칙
+controller: nest g controller
+service: nest g service
+module: nest g module 
